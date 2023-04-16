@@ -5,42 +5,39 @@
 /**
  * argstostr - main entry
  * @ac: int input
- * @av: arguments
- * Return: a pointer to a new string
+ * @av: double pointer array
+ * Return: Nill
  */
 char *argstostr(int ac, char **av)
 {
-	int x;
-	int y;
-	char *a = NULL;
-	int z;
-	int xyz;
+	int x, y, z = 0, a = 0;
+	char *str;
 
-	z = 0;
-	xyz = 0;
 	if (ac == 0 || av == NULL)
 		return (NULL);
+
 	for (x = 0; x < ac; x++)
 	{
-		for (y = 0; av[x][y] != '\0'; y++)
-		{
-			ext++;
-		}
+		for (y = 0; av[x][y]; y++)
+			a++;
 	}
+	a += ac;
 
-	a = (char *)malloc(ext + ac + 1 * sizeof(char));
-	if (a == NULL)
+	str = malloc(sizeof(char) * a + 1);
+
+	if (str == NULL)
 		return (NULL);
 	for (x = 0; x < ac; x++)
 	{
-		for (y = 0; av[x][y] != '\0'; y++)
-		{
-			a[z] = av[x][y];
-			a++;
-		}
-		a[z] = '\n';
+	for (y = 0; av[x][y]; y++)
+	{
+		str[z] = av[x][y];
 		z++;
 	}
-	a[z] = '\0';
-	return (a);
+	if (str[z] == '\0')
+	{
+		str[z++] = '\n';
+	}
+	}
+	return (str);
 }
