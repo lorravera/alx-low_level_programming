@@ -4,7 +4,8 @@
 /**
  * @s: string to evaluate
  * count_word - helper function to count the number of words in a string
- * Return: quantity of words
+ *
+ * Return: number of words
  */
 int count_word(char *s)
 {
@@ -36,7 +37,7 @@ int count_word(char *s)
 char **strtow(char *str)
 {
 	char **matrix, *tmp;
-	int x, y = 0, len = 0, words, a = 0, start, end;
+	int x, y = 0, len = 0, words, d = 0, start, end;
 
 	while (*(str + len))
 		len++;
@@ -53,22 +54,22 @@ char **strtow(char *str)
 	{
 		if (str[x] == ' ' || str[x] == '\0')
 		{
-			if (a)
+			if (d)
 			{
 				end = x;
-				tmp = (char *)malloc(sizeof(char) * (a + 1));
+				tmp = (char *)malloc(sizeof(char) * (d + 1));
 				if (tmp == NULL)
 					return (NULL);
 				while (start < end)
 					*tmp++ = str[start];
 				*tmp = '\0';
-				matrix[y] = tmp - a;
+				matrix[y] = tmp - d;
 				y++;
-				a = 0;
+				d = 0;
 			}
 		}
-		else if (a++ == 0)
-			start = a;
+		else if (d++ == 0)
+			start = x;
 	}
 
 	matrix[y] = NULL;
