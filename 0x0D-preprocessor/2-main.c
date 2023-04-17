@@ -4,7 +4,7 @@
  * main - prints the name of
  * the file it was compiled from
  *
- * Return: null
+ * Return: nothing
  */
 
 int main(void)
